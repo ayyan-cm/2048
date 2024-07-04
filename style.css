@@ -103,19 +103,19 @@ button{
 
 @media (max-width: 600px) {
     .game-board {
-        height: 300px;
-        width: 250px;
+        height: 380px;
+        width: 330px;
     }
 
     .board {
-        width: 220px;
-        height: 220px;
+        width: 300px;
+        height: 300px;
         margin: 10px;
     }
 
     .board div {
-        width: 45px;
-        height: 45px;
+        width: 65px;
+        height: 65px;
         margin: 2px;
         font-size: 16px;
     }
