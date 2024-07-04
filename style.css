@@ -76,7 +76,6 @@ button{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: hsl(279, 92%, 59%);
 }
 
 .board div {
@@ -84,7 +83,7 @@ button{
     height: 85px;
     margin: 5px;
     text-align: center;
-    color: white;
+    color: rgb(0, 0, 0);
     font-size: 30px;
     align-content: center;
     border-radius: 8px;
