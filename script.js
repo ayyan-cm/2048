@@ -96,6 +96,7 @@ function newGame() {
 
 }
 
+//For Key events
 document.addEventListener("keyup", function(event) {
     let isBlocksMoved = false;
     previousBlockValues = blockValues.map(inner => inner.slice());
@@ -114,6 +115,48 @@ document.addEventListener("keyup", function(event) {
         placeCards();
     }
 });
+
+//For Touch events
+let touchstartX = 0;
+let touchstartY = 0;
+let touchendX = 0;
+let touchendY = 0;
+document.addEventListener("touchstart", function(event) {
+    touchstartX = event.touches[0].clientX;
+    touchstartY = event.touches[0].clientY;
+});
+
+document.addEventListener("touchend", function(event) {
+    touchendX = event.changedTouches[0].clientX;
+    touchendY = event.changedTouches[0].clientY;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    const deltaX = touchendX - touchstartX;
+    const deltaY = touchendY - touchstartY;
+    let isBlocksMoved = false;
+    previousBlockValues = blockValues.map(inner => inner.slice());
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        if (deltaX > 0) {
+            isBlocksMoved = moveRight();
+        } else {
+            isBlocksMoved = moveLeft();
+        }
+    } else {
+        if (deltaY > 0) {
+            isBlocksMoved = moveDown();
+        } else {
+            isBlocksMoved = moveUp();
+        }
+    }
+
+    if (isBlocksMoved) {
+        placeRandom();
+        placeCards();
+    }
+}
 
 function move(row) { 
     addScore = 0;

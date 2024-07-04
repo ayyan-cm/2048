@@ -27,9 +27,8 @@ button{
 .game-board{
     display: none;
     padding: 5px;
-    height: 520px;
-    width: 440px;
-    border: 1px solid black;
+    height: 480px;
+    width: 400px;
     border-radius: 15px;
     justify-content: center;
 }
@@ -67,8 +66,8 @@ button{
 }
 
 .board {
-    width: 400px;
-    height: 400px;
+    width: 360px;
+    height: 360px;
     border: 1px solid black;
     margin: 20px 10px 10px 10px;
     border-radius: 10px;
@@ -79,8 +78,8 @@ button{
 }
 
 .board div {
-    width: 85px;
-    height: 85px;
+    width: 75px;
+    height: 75px;
     margin: 5px;
     text-align: center;
     color: rgb(0, 0, 0);
