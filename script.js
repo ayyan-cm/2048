@@ -1,10 +1,10 @@
 /*Todo
 
-1. No movement no new random
-2. inside square no new random check 
-3. check move down
+1. No movement no new random ✔️
+2. inside square no new random check ✔️
+3. check move down ✔️
 2. backward
-3. reset
+3. reset ✔️
 4. timout check
 4. score
 5. game over
@@ -13,12 +13,14 @@
 
 */
 
-const newValues = [2,2,2,2,2,2,4]
+const newValues = [2,2,2,2,2,2,2,2,2,2,4]
 
 var blockValues = [ [0,0,0,0],
                     [0,0,0,0],
                     [0,0,0,0],
                     [0,0,0,0] ];
+
+var previousBlockValues = blockValues;
 
 const board = document.getElementById('board');
 
@@ -67,12 +69,17 @@ function placeRandom() {
         while (!placed){
             let row = Math.floor(Math.random() * 4);
             let column = Math.floor(Math.random() * 4);
-            if (blockValues[row][column] == 0 && !([2,3].includes(row) && [2,3].includes(column)) ) {
+            if (blockValues[row][column] == 0 && !([2,1].includes(row) && [2,1].includes(column)) ) {
                 blockValues[row][column] = newValues[Math.floor(Math.random() * newValues.length)];
                 placed = true;
             }
         }
     }
+}
+
+function previousState() {
+    blockValues = previousBlockValues;
+    placeCards();
 }
 
 function newGame() {
@@ -86,6 +93,7 @@ function newGame() {
                     [0,0,0,0],
                     [0,0,0,0],
                     [0,0,0,0] ];
+                    
     placeRandom();
     placeCards();
 
@@ -93,6 +101,7 @@ function newGame() {
 
 document.addEventListener("keyup", function(event) {
     let isBlocksMoved = false;
+    previousBlockValues = blockValues;
     if (event.key == 'w' || event.key == 'ArrowUp') {
         isBlocksMoved = moveUp();
     } else if (event.key == 's'  || event.key == 'ArrowDown') {
@@ -102,6 +111,7 @@ document.addEventListener("keyup", function(event) {
     } else if (event.key == 'd' || event.key == 'ArrowRight') {
         isBlocksMoved = moveRight();
     }
+
     if (isBlocksMoved){
         placeRandom();
         placeCards();
@@ -109,11 +119,11 @@ document.addEventListener("keyup", function(event) {
 });
 
 function move(row) { 
+    copyRow = row;
+    let movement = false;
     row = row.filter(val => val !== 0);
-    movement = false;
     for (let i = 0; i < row.length-1; i++) {
         if (row[i] == row[i+1]) {
-            movement = true;
             row[i] = row[i] * 2;
             row[i+1] = 0;
         }
@@ -123,26 +133,38 @@ function move(row) {
     while (row.length < 4) {
         row.push(0);
     }
-    return row,movement;
+
+    if (JSON.stringify(copyRow) != JSON.stringify(row)) {
+        movement = true;
+    }
+    
+    return [row,movement];
 }
 
-function moveUp() {  
+function moveUp() { 
+    let movement = false; 
+    let moveTemp = false;
     for (let column=0; column<4; column++) {
         row = [blockValues[0][column], blockValues[1][column], blockValues[2][column], blockValues[3][column]];
-        row = move(row);
+        [row, moveTemp] = move(row);
+        movement = movement || moveTemp;
         blockValues[0][column] = row[0];
         blockValues[1][column] = row[1];
         blockValues[2][column] = row[2];
         blockValues[3][column] = row[3];
     }   
+    
     return movement;
 }
 
 function moveDown() {
+    let movement = false;
+    let moveTemp = false;
     for (let column=0; column<4; column++) {
         row = [blockValues[0][column], blockValues[1][column], blockValues[2][column], blockValues[3][column]];
         row.reverse();
-        row = move(row);
+        [row, moveTemp] = move(row);
+        movement = movement || moveTemp;
         blockValues[0][column] = row[3];
         blockValues[1][column] = row[2];
         blockValues[2][column] = row[1];
@@ -152,16 +174,22 @@ function moveDown() {
 }
 
 function moveLeft() {
+    let movement = false;
+    let moveTemp = false;
     for (let row=0; row<4; row++) {
-        blockValues[row] = move(blockValues[row]);
+        [blockValues[row], moveTemp] = move(blockValues[row]);
+        movement = movement || moveTemp;
     }
     return movement;
 }
 
 function moveRight() {
+    let movement = false;
+    let moveTemp = false;
     for (let row=0; row<4; row++) {
         blockValues[row].reverse();
-        blockValues[row] = move(blockValues[row]);
+        [blockValues[row], moveTemp]  = move(blockValues[row]);
+        movement = movement || moveTemp;
         blockValues[row].reverse();
     }
     return movement;
