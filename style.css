@@ -46,6 +46,7 @@ button{
 .game-head{
     display: flex;
     height: 50px;
+    padding-left: 5px;
     justify-content: space-between;
     align-items: center;
     margin: 10px;
@@ -69,7 +70,7 @@ button{
     width: 360px;
     height: 360px;
     border: 1px solid black;
-    margin: 20px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
     border-radius: 10px;
     padding: 10px;
     display: flex;
@@ -102,20 +103,19 @@ button{
 .x2048 { background: #EDC22E; color: #F9F6F2; }
 
 @media (max-width: 600px) {
-    .game-board {
-        height: 380px;
-        width: 330px;
+    .body {
+        position: fixed;
     }
 
     .board {
-        width: 300px;
-        height: 300px;
+        width: 85vw; 
+        height: 85vw;
         margin: 10px;
     }
 
     .board div {
-        width: 65px;
-        height: 65px;
+        width: 20vw;
+        height: 20vw;
         margin: 2px;
         font-size: 16px;
     }
