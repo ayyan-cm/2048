@@ -101,4 +101,22 @@ button{
 .x1024 { background: #EDC53F; color: #F9F6F2; }
 .x2048 { background: #EDC22E; color: #F9F6F2; }
 
+@media (max-width: 600px) {
+    .game-board {
+        height: 300px;
+        width: 250px;
+    }
 
+    .board {
+        width: 220px;
+        height: 220px;
+        margin: 10px;
+    }
+
+    .board div {
+        width: 45px;
+        height: 45px;
+        margin: 2px;
+        font-size: 16px;
+    }
+}
