@@ -1,20 +1,15 @@
 /*Todo
 
-1. No movement no new random ✔️
-2. inside square no new random check ✔️
-3. check move down ✔️
-2. backward
-3. reset ✔️
-4. timout check
-4. score
-5. game over
-6. color
-7. animation
+1. color
+2. game over
+3. animation
 
 */
 
 const newValues = [2,2,2,2,2,2,2,2,2,2,4]
 
+var score = 0;
+var addScore = 0;
 var blockValues = [ [0,0,0,0],
                     [0,0,0,0],
                     [0,0,0,0],
@@ -46,16 +41,16 @@ function isFull() {
 }
 
 function placeCards() {
+
+    const scoreCard = document.getElementById('score');
+    scoreCard.textContent = score;
+
     for ( let i = 0; i < 4; i++ ) {
         for ( let j = 0; j < 4; j++ ) {
             if ( blockValues[i][j] == 0 ) {
                 board.children[i*4+j].textContent = '';
-                board.children[i*4+j].style.backgroundColor = 'hsla(9, 14%, 90%, 0.714)';
             } else {
                 board.children[i*4+j].textContent = blockValues[i][j];
-                //board.children[i*4+j].className = 'card card-'+blockValues[i][j];
-                board.children[i*4+j].style.backgroundColor = 'white';
-                board.children[i*4+j].style.color = 'black';
             }
         }
     }
@@ -78,6 +73,7 @@ function placeRandom() {
 }
 
 function previousState() {
+    score -= addScore;
     blockValues = previousBlockValues;
     placeCards();
 }
@@ -89,6 +85,7 @@ function newGame() {
     gameBoard.style.display = 'block';
     startDiv.style.display = 'none';
 
+    score = 0;
     blockValues = [ [0,0,0,0],
                     [0,0,0,0],
                     [0,0,0,0],
@@ -101,7 +98,7 @@ function newGame() {
 
 document.addEventListener("keyup", function(event) {
     let isBlocksMoved = false;
-    previousBlockValues = blockValues;
+    previousBlockValues = blockValues.map(inner => inner.slice());
     if (event.key == 'w' || event.key == 'ArrowUp') {
         isBlocksMoved = moveUp();
     } else if (event.key == 's'  || event.key == 'ArrowDown') {
@@ -119,6 +116,7 @@ document.addEventListener("keyup", function(event) {
 });
 
 function move(row) { 
+    addScore = 0;
     copyRow = row;
     let movement = false;
     row = row.filter(val => val !== 0);
@@ -126,10 +124,12 @@ function move(row) {
         if (row[i] == row[i+1]) {
             row[i] = row[i] * 2;
             row[i+1] = 0;
+            addScore += row[i];
         }
     }
 
-    row.filter(val => val !== 0)
+    row = row.filter(val => val !== 0);
+    console.log(row);
     while (row.length < 4) {
         row.push(0);
     }
@@ -137,7 +137,7 @@ function move(row) {
     if (JSON.stringify(copyRow) != JSON.stringify(row)) {
         movement = true;
     }
-    
+    score += addScore;
     return [row,movement];
 }
 

@@ -79,7 +79,7 @@ button{
     background-color: hsl(279, 92%, 59%);
 }
 
-.card {
+.board div {
     width: 85px;
     height: 85px;
     margin: 5px;
@@ -87,6 +87,20 @@ button{
     color: white;
     font-size: 30px;
     align-content: center;
-    border-radius: 5px;
-    background-color: hsla(9, 14%, 90%, 0.714);
+    border-radius: 8px;
+    background: #CDC1B4; 
 }
+
+.x2 { background: #EEE4DA; color: #776E65; }
+.x4 { background: #EDE0C8; color: #776E65; }
+.x8 { background: #F2B179; color: #F9F6F2; }
+.x16 { background: #F59563; color: #F9F6F2; }
+.x32 { background: #F67C5F; color: #F9F6F2; }
+.x64 { background: #F65E3B; color: #F9F6F2; }
+.x128 { background: #EDCF72; color: #F9F6F2; }
+.x256 { background: #EDCC61; color: #F9F6F2; }
+.x512 { background: #EDC850; color: #F9F6F2; }
+.x1024 { background: #EDC53F; color: #F9F6F2; }
+.x2048 { background: #EDC22E; color: #F9F6F2; }
+
+
