@@ -103,8 +103,12 @@ button{
 .x2048 { background: #EDC22E; color: #F9F6F2; }
 
 @media (max-width: 600px) {
-    .body {
-        position: fixed;
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        overflow: hidden; 
+        height: 100%;
     }
 
     .board {
