@@ -69,7 +69,6 @@ button{
 .board {
     width: 360px;
     height: 360px;
-    border: 1px solid black;
     margin: 10px 10px 10px 10px;
     border-radius: 10px;
     padding: 10px;
@@ -78,7 +77,7 @@ button{
     justify-content: center;
 }
 
-.board div {
+.card {
     width: 75px;
     height: 75px;
     margin: 5px;
@@ -87,9 +86,10 @@ button{
     font-size: 30px;
     align-content: center;
     border-radius: 8px;
-    background: #CDC1B4; 
+    background: lightgrey; 
 }
 
+.x0 { background: lightgray; color: #776E65;}
 .x2 { background: #EEE4DA; color: #776E65; }
 .x4 { background: #EDE0C8; color: #776E65; }
 .x8 { background: #F2B179; color: #F9F6F2; }
@@ -117,7 +117,7 @@ button{
         margin: 10px;
     }
 
-    .board div {
+    .card {
         width: 20vw;
         height: 20vw;
         margin: 2px;

@@ -16,6 +16,18 @@
         <button onclick="newGame();">Start</button>
     </div>
 
+    
+    <div class="new-game" style="background-color: rgba(255, 0, 0, 0.304); display: none;">
+        <h2>Game Over</h2>
+        <button onclick="newGame();">Try Again</button>
+    </div>
+
+    <div class="new-game" style="background-color: rgba(255, 217, 0, 0.34); display: none;">
+        <h2>Game Won</h2>
+        <button onclick="newGame();">Restart</button>
+        <button onclick="continueGame();">Continue</button>
+    </div>
+
     <div class="game-board">
 
         <div class="game-head">
@@ -28,8 +40,7 @@
                 <img id="undo" src="icons/undo.svg" alt="back" onclick="previousState();">
                 <img id="reset" src="icons/reset.svg" alt="reset" onclick="newGame();">
             </div>
-        </div>
-        
+        </div>  
     
         <div class="board" id="board"> </div>
         
