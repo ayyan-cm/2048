@@ -1,9 +1,12 @@
 /*Todo
 
 1. color ✔️
-2. game over
+2. game over✔️
 3. previos var updates ✔️
 4. won ✔️
+
+5. Sound
+6. Animation
 
 */
 var score = 0;
@@ -32,12 +35,12 @@ function isFull() {
 }
 
 function canMove() {
-    for (let i = 0; i < 4; i++) {
-        let row = blockValues[i];
-        let col = [blockValues[0][i], blockValues[1][i], blockValues[2][i], blockValues[3][i]];
-        for (let j = 0; j < 3; j++) {
-            if (row[j] === row[j + 1] || row[j] === 0 || row[j + 1] === 0) return true;
-            if (col[j] === col[j + 1] || col[j] === 0 || col[j + 1] === 0) return true;
+    let i=0;
+    let j=0;
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 4; j++) {
+            if (i !== 3 && blockValues[i][j] === blockValues[i + 1][j]) return true;
+            if (j !== 3 && blockValues[i][j] === blockValues[i][j + 1]) return true;
         }
     }
     return false;
@@ -71,23 +74,19 @@ async function placeCards() {
 }
 
 async function placeRandom() {
-    if (isFull()) {
-        placeCards();
-        if (!canMove()) {
-            gameOverDiv.style.display = 'flex';
-            console.log('Game Over');
+    let placed = false;
+    while (!placed) {
+        let row = Math.floor(Math.random() * 4);
+        let column = Math.floor(Math.random() * 4);
+        if (blockValues[row][column] == 0 && !([2, 1].includes(row) && [2, 1].includes(column))) {
+            blockValues[row][column] = Math.random() < 0.9 ? 2 : 4;
+            setTile(row, column, blockValues[row][column]);
+            placed = true;
         }
-    } else {
-        let placed = false;
-        while (!placed) {
-            let row = Math.floor(Math.random() * 4);
-            let column = Math.floor(Math.random() * 4);
-            if (blockValues[row][column] == 0 && !([2, 1].includes(row) && [2, 1].includes(column))) {
-                blockValues[row][column] = Math.random() < 0.9 ? 2 : 4;
-                setTile(row, column, blockValues[row][column]);
-                placed = true;
-            }
-        }
+    }
+
+    if (isFull() && !canMove()) {
+        gameOverDiv.style.display = 'flex';
     }
 }
 
