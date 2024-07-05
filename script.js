@@ -109,6 +109,7 @@ function continueGame() {
 }
 
 async function previousState() {
+    gameOVerDiv.style.display = 'none';
     score = previousScore;
     blockValues = JSON.parse(JSON.stringify(previousBlockValues));
     await placeCards();
