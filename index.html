@@ -6,23 +6,20 @@
     <title>2048</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" async></script>
-    <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
 
-    <div class="new-game">
+    <div class="new-game start">
         <h2>New Game</h2>
         <button onclick="newGame();">Start</button>
     </div>
 
-    
-    <div class="new-game" style="background-color: rgba(255, 0, 0, 0.304); display: none;">
+    <div class="new-game over" style="background-color: rgba(255, 0, 0, 0.304); display: none;">
         <h2>Game Over</h2>
         <button onclick="newGame();">Try Again</button>
     </div>
 
-    <div class="new-game" style="background-color: rgba(255, 217, 0, 0.34); display: none;">
+    <div class="new-game won" style="background-color: rgba(255, 217, 0, 0.34); display: none;">
         <h2>Game Won</h2>
         <button onclick="newGame();">Restart</button>
         <button onclick="continueGame();">Continue</button>
@@ -32,8 +29,8 @@
 
         <div class="game-head">
             <div class="score-container">
-                <p>Score : </p>
-                <p id="score">0</p>
+                <p>Score :</p>
+                <p id="score" style="font-weight: bolder;">0</p>
             </div>
     
             <div class="game-options">
@@ -46,7 +43,5 @@
         
     </div>
 
-   
-    
 </body>
 </html>
