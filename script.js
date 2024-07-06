@@ -2,7 +2,7 @@
 
 1. color ✔️
 2. game over✔️
-3. previos var updates ✔️
+3. previous var updates ✔️
 4. won ✔️
 
 5. Sound
@@ -109,6 +109,7 @@ function continueGame() {
 }
 
 async function previousState() {
+    gameOverDiv.style.display = 'none';
     score = previousScore;
     blockValues = JSON.parse(JSON.stringify(previousBlockValues));
     await placeCards();
