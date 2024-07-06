@@ -9,17 +9,26 @@
 </head>
 <body>
 
+    <div class="sound">
+        <select name="sound" id="sound" onchange="changeSound();">
+            <option value="on">Sound 🔊</option>
+            <option value="off">Mute 🔇</option>
+            <option value="meme">Kids 👶🏻</option>
+            <option value="legends">Legends 🔞</option>
+        </select>
+    </div>
+
     <div class="new-game start">
         <h2>New Game</h2>
         <button onclick="newGame();">Start</button>
     </div>
 
-    <div class="new-game over" style="background-color: rgba(255, 0, 0, 0.304); display: none;">
+    <div class="result over" style="background-color: rgba(255, 0, 0, 0.304); display: none;">
         <h2>Game Over</h2>
         <button onclick="newGame();">Try Again</button>
     </div>
 
-    <div class="new-game won" style="background-color: rgba(255, 217, 0, 0.34); display: none;">
+    <div class="result won" style="background-color: rgba(255, 217, 0, 0.34); display: none;">
         <h2>Podu thakida thakida</h2>
         <button onclick="newGame();">Restart</button>
         <button onclick="continueGame();">Continue</button>

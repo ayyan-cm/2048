@@ -4,9 +4,9 @@
 2. game over✔️
 3. previous var updates ✔️
 4. won ✔️
-
 5. Sound
 6. Animation
+7. game over div full screen
 
 */
 var score = 0;
@@ -19,8 +19,8 @@ var previousBlockValues = JSON.parse(JSON.stringify(blockValues));
 const board = document.getElementById('board');
 const gameBoard = document.querySelector('.game-board');
 const startDiv = document.querySelector('.new-game.start');
-const gameOverDiv = document.querySelector('.new-game.over');
-const wonDiv = document.querySelector('.new-game.won');
+const gameOverDiv = document.querySelector('.result.over');
+const wonDiv = document.querySelector('.result.won');
 
 window.onload = async function() {
     for (let i = 0; i < 16; i++) {
@@ -236,12 +236,11 @@ async function handleSwipe() {
         newBlockValues = deltaY > 40 ? moveDown(newBlockValues) : moveUp(newBlockValues);
     }
 
-    // To check if the board has changed
     if (!arraysEqual(newBlockValues, blockValues)) {
         previousBlockValues = JSON.parse(JSON.stringify(blockValues));
-        blockValues = JSON.parse(JSON.stringify(newBlockValues));
         previousScore = score;
         score = scoreTemp;
+        blockValues = JSON.parse(JSON.stringify(newBlockValues));
         await placeRandom();
         await placeCards();
     }
